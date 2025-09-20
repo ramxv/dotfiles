@@ -1,4 +1,5 @@
 require('lazy').setup({
+  'brenoprata10/nvim-highlight-colors',
 
   'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
 

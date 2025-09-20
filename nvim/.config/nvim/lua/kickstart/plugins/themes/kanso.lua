@@ -29,6 +29,6 @@ return {
         light = 'pearl', -- try "mist" !
       },
     }
-    vim.cmd 'colorscheme kanso'
+    -- vim.cmd 'colorscheme kanso'
   end,
 }
