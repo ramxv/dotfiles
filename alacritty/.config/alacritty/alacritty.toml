@@ -1,20 +1,21 @@
 [general]
-import=[
+import = [
   # themes
-  "~/.config/alacritty/themes/kanso-zen.toml",
+  # "~/.config/alacritty/themes/kanso-zen.toml",
+  "~/.config/alacritty/themes/everforest-dark.toml",
   # "~/.config/alacritty/themes/kanagawa-dragon.toml",
   # "~/.config/alacritty/themes/rose-pine.toml",
   # "~/.config/alacritty/themes/rose-pine-moon.toml",
 ]
 
 [window]
-padding={x=4,y=4}
-opacity=0.98
+padding = { x = 4, y = 4 }
+opacity = 0.95
 
 [font]
 size = 12.0
-offset = {x = 0, y = 0}
-glyph_offset = {x = 0, y = 0}
+offset = { x = 0, y = 0 }
+glyph_offset = { x = 0, y = 0 }
 builtin_box_drawing = false
 
 [font.normal]
@@ -25,7 +26,7 @@ style = "regular"
 WINIT_X11_SCALE_FACTOR = "1.0"
 
 [scrolling]
-history=1000
+history = 1000
 
 [mouse]
-hide_when_typing=true
+hide_when_typing = true
