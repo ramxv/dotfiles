@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# Handle mouse click
+case $BLOCK_BUTTON in
+1) amixer set Master toggle ;; # Left click = mute/unmute
+3) setsid -w -f "$TERMINAL" -e alsamixer ;;
+4) amixer set Master 5%+ ;; # Scroll up
+5) amixer set Master 5%- ;; # Scroll down
+esac
+
+# Get current volume level
+vol=$(amixer get Master | awk -F'[][]' '/%/ { print $2 }' | head -n1 | tr -d '%')
+
+# Mute status
+mute=$(amixer get Master | awk -F'[][]' '/%/ { print $4 }' | head -n1)
+
+if [ "$mute" = "off" ]; then
+  icon="󰖁 " # Muted icon
+else
+  if [ "$vol" -gt 70 ]; then
+    icon="󱄠 "
+  elif [ "$vol" -gt 30 ]; then
+    icon="󰖀 "
+  elif [ "$vol" -gt 1 ]; then
+    icon="󰕿 "
+  else
+    icon="󰖁 "
+  fi
+fi
+
+echo "$icon$vol%"

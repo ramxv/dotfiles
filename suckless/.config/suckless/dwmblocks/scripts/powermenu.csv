@@ -1,0 +1,5 @@
+Suspend,systemctl suspend,system-suspend.svg
+Reboot,reboot,system-reboot.svg 
+Poweroff,shutdown now,system-shutdown.svg 
+Logout,sudo systemctl restart lightdm,system-log-out.svg 
+

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+time_dwmblock() {
+  hours=$(date +%H)
+  minutes=$(date +%M)
+
+  echo "$hours:$minutes"
+}
+
+time_dwmblock

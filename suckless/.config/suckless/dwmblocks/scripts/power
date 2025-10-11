@@ -1,0 +1,13 @@
+#!/bin/sh
+
+#echo "$choice" >>/tmp/jgmenu.log
+
+case "$BLOCK_BUTTON" in
+1)
+  echo "Choice: click signal good $BLOCK_BUTTON" >>/tmp/jgmenu.log
+  cat /home/thanatos/.config/suckless/dwmblocks/scripts/powermenu.csv | jgmenu --vsimple --at-pointer --popup
+  ;;
+
+esac
+
+echo "󰐥 Power Menu "

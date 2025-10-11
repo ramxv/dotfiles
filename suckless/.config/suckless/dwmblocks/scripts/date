@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# Date function
+
+date_dwmblock() {
+  current_date=$(date '+%a %d %b')
+
+  echo "$current_date"
+}
+
+date_dwmblock

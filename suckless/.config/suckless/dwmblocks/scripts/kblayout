@@ -1,0 +1,44 @@
+#!/bin/sh
+
+# Change layout only on left click
+if [ "$BLOCK_BUTTON" = "1" ]; then
+  layout=$(setxkbmap -query | awk '/layout:/ {print $2}')
+  variant=$(setxkbmap -query | awk '/variant:/ {print $2}')
+  opts=$(setxkbmap -query | sed -n 's/^options:\s*//p')
+
+  case "${layout}:${variant:-none}" in
+  us:none) # plain US -> next: US (intl)
+    setxkbmap -layout us -variant intl ${opts:+-option "$opts"}
+    ;;
+  us:intl) # US (intl) -> next: LATAM
+    setxkbmap -layout latam ${opts:+-option "$opts"}
+    ;;
+  latam:*) # LATAM -> next: plain US
+    setxkbmap -layout us ${opts:+-option "$opts"}
+    ;;
+  *) # fallback -> go to US (intl)
+    setxkbmap -layout us -variant intl ${opts:+-option "$opts"}
+    ;;
+  esac
+
+  pkill -RTMIN+3 dwmblocks
+  exit 0
+fi
+
+# Always get the current layout for display (no toggling here!)
+layout=$(setxkbmap -query | grep -oP 'layout:\s*\K\w+')
+variant=$(setxkbmap -query | grep -oP 'variant:\s*\K\S+' || true)
+
+# Display short label
+if [ "$layout" = "us" ]; then
+  if [ "$variant" = "intl" ]; then
+    echo "us(intl)"
+  else
+    echo "us"
+  fi
+elif [ "$layout" = "latam" ]; then
+  echo "latam"
+else
+  # Fallback: show actual layout[:variant] if something unexpected
+  echo "$layout${variant:+:$variant}"
+fi

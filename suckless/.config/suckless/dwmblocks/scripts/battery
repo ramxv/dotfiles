@@ -1,0 +1,19 @@
+#!/bin/bash
+
+BAT="/sys/class/power_supply/BAT0"
+status=$(cat "$BAT/status")
+
+# Try to find the current and full values from common files
+if [[ -f "$BAT/energy_now" ]]; then
+  current=$(cat "$BAT/energy_now")
+  full=$(cat "$BAT/energy_full")
+elif [[ -f "$BAT/charge_now" ]]; then
+  current=$(cat "$BAT/charge_now")
+  full=$(cat "$BAT/charge_full")
+else
+  echo "Battery info not available"
+  exit 1
+fi
+
+percentage=$((current * 100 / full))
+echo "$percentage% $status"
